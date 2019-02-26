@@ -18,23 +18,6 @@ type Props = any;
 
 class ItemList extends Component<Props> {
   render() {
-    // const itemsToRender = [
-    //   {
-    //     id: 1,
-    //     name: 'Creme Fraiche',
-    //     qty: 1,
-    //   },
-    //   {
-    //     id: 2,
-    //     name: 'Canned smoked trout 4oz',
-    //     qty: 2,
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'toothbrushes',
-    //     qty: 1,
-    //   },
-    // ];
     return (
       <Query query={ITEMS_QUERY}>
         {({ loading, error, data }) => {
