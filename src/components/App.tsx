@@ -14,6 +14,15 @@ const SERVER_HELLO = gql`
   }
 `;
 
+const GET_HOUSES = gql`
+  query {
+    houses {
+      id
+      name
+    }
+  }
+`;
+
 const LocalHello = () => (
   <Query query={LOCAL_HELLO} variables={{ subject: 'World' }}>
     {({ loading, error, data }) => {
@@ -21,13 +30,15 @@ const LocalHello = () => (
         return 'Loading...';
       }
 
-      return <h2>Local Salutation: {error ? error.message : data.localHello}</h2>;
+      return (
+        <h2>Local Salutation: {error ? error.message : data.localHello}</h2>
+      );
     }}
   </Query>
 );
 
 const ServerHello = () => (
-  <Query query={SERVER_HELLO} variables={{ subject: 'World' }}>
+  <Query query={GET_HOUSES}>
     {({ loading, error, data }) => {
       if (loading) {
         return 'Loading...';
@@ -36,9 +47,7 @@ const ServerHello = () => (
       return (
         <h2>
           Server Salutation:&nbsp;
-          {error
-            ? error.message + '. You probably don`t have GraphQL Server running at the moment - thats okay'
-            : data.hello}
+          {error ? error.message : data.houses[0].name}
         </h2>
       );
     }}
