@@ -5,17 +5,12 @@
     "tslint-config-prettier"
   ],
   "linterOptions": {
-    "exclude": [
-      "node_modules",
-      "build"
-    ]
+    "exclude": ["node_modules", "build"]
   },
   "rules": {
+    "member-access": false,
     "object-literal-sort-keys": false,
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
+    "interface-name": [true, "never-prefix"],
     "prettier": [
       true,
       {

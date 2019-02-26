@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-type Props = { item: { name: string; qty: number } };
+interface Props {
+  item: { name: string; qty: number };
+}
 
 class Item extends Component<Props> {
   render() {
