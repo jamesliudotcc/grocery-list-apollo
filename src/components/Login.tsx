@@ -84,7 +84,7 @@ class Login extends Component {
     const { token } = this.state.login ? data.tokenAuth : data.signup;
     this.saveUserData(token);
     // @ts-ignore
-    // this.props.history.push(`/`);
+    this.props.history.push(`/`);
   };
 
   private saveUserData = token => {
