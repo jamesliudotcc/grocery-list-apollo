@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { Route, Switch } from 'react-router';
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import CreateItem from './CreateItem';
 import ItemList from './ItemList';
 
 const LOCAL_HELLO = gql`
@@ -17,6 +18,8 @@ const App = () => (
     {/* <Header /> */}
     <div className="ph3 pv1 background-gray">
       <ItemList />
+      <hr />
+      <CreateItem />
       {/* <Switch>
         <Route exact path="/" component={ItemList} />
         <Route exact path="/create" component={CreateItem} />

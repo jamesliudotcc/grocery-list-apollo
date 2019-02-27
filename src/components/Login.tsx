@@ -38,7 +38,7 @@ class Login extends Component {
           />
         </div>
         <div className="flex mt3">
-          <div className="pointer mr2 button" onClick={() => this._confirm()}>
+          <div className="pointer mr2 button" onClick={() => this.confirm()}>
             {login ? 'login' : 'create account'}
           </div>
           <div
@@ -51,11 +51,11 @@ class Login extends Component {
       </div>
     );
   }
-  private _confirm = async () => {
+  private confirm = async () => {
     //
   };
 
-  private _saveUserData = token => {
+  private saveUserData = token => {
     localStorage.setItem(AUTH_TOKEN, token);
   };
 }
