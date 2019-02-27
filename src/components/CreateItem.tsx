@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 
 const POST_MUTATION = gql`
-  mutation postMutation($name: String!, $qty: Int) {
-    post(name: $name, qty: $qty) {
+  mutation PostMutation(
+    $name: String!
+    $qty: Int!
+    $house: Int
+    $stores: [Int]
+  ) {
+    createItem(name: $name, qty: $qty, house: $house, stores: $stores) {
       id
       name
       qty
@@ -16,22 +21,25 @@ class CreateItem extends Component {
   state = {
     name: '',
     qty: 1,
-    stores: [],
+    stores: [1, 2],
     bought: null,
     bought_by: null,
-    houses: [],
+    house: 1,
   };
 
   render() {
-    const { name, qty, stores, bought, bought_by, houses } = this.state;
+    const { name, qty, house, stores } = this.state;
     return (
       <div>
-        <Mutation mutation={POST_MUTATION}>
-          {postMutation => (
+        <Mutation
+          mutation={POST_MUTATION}
+          variables={{ name, qty, house, stores }}
+        >
+          {PostMutation => (
             <form
               onSubmit={e => {
                 e.preventDefault();
-                postMutation({ variables: { name, qty } });
+                PostMutation();
               }}
             >
               <div className="flex flex-column mt3">
