@@ -1,6 +1,7 @@
 import { gql } from 'apollo-boost';
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
+import { AUTH_TOKEN } from '../constants';
 
 const POST_MUTATION = gql`
   mutation PostMutation(
@@ -28,41 +29,44 @@ class CreateItem extends Component {
   };
 
   render() {
+    const authToken = localStorage.getItem(AUTH_TOKEN);
     const { name, qty, house, stores } = this.state;
     return (
-      <div>
-        <Mutation
-          mutation={POST_MUTATION}
-          variables={{ name, qty, house, stores }}
-        >
-          {PostMutation => (
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                PostMutation();
-              }}
-            >
-              <div className="flex flex-column mt3">
-                <input
-                  className="mb2"
-                  value={name}
-                  onChange={e => this.setState({ name: e.target.value })}
-                  type="text"
-                  placeholder="What to buy"
-                />
-                <input
-                  className="mb2"
-                  value={qty}
-                  onChange={e => this.setState({ qty: e.target.value })}
-                  type="text"
-                  placeholder="How much"
-                />
-                <input type="submit" />
-              </div>
-            </form>
-          )}
-        </Mutation>
-      </div>
+      authToken && (
+        <div>
+          <Mutation
+            mutation={POST_MUTATION}
+            variables={{ name, qty, house, stores }}
+          >
+            {PostMutation => (
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  PostMutation();
+                }}
+              >
+                <div className="flex flex-column mt3">
+                  <input
+                    className="mb2"
+                    value={name}
+                    onChange={e => this.setState({ name: e.target.value })}
+                    type="text"
+                    placeholder="What to buy"
+                  />
+                  <input
+                    className="mb2"
+                    value={qty}
+                    onChange={e => this.setState({ qty: e.target.value })}
+                    type="text"
+                    placeholder="How much"
+                  />
+                  <input type="submit" />
+                </div>
+              </form>
+            )}
+          </Mutation>
+        </div>
+      )
     );
   }
 }
