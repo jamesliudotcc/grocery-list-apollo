@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 import React, { Component } from 'react';
-import { Query } from 'react-apollo';
+import { Query, withApollo } from 'react-apollo';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AUTH_TOKEN } from '../constants';
@@ -9,6 +9,10 @@ const GREETER_QUERY = gql`
   query {
     me {
       username
+      houses {
+        id
+        name
+      }
     }
   }
 `;
@@ -62,6 +66,29 @@ class Header extends Component {
             <Link to="/login" className="ml1 no-underline black">
               Login
             </Link>
+          )}
+          <hr />
+          {authToken && (
+            <div>
+              <Query query={GREETER_QUERY}>
+                {({ loading, error, data }) => {
+                  if (loading) {
+                    return <div>Fetching</div>;
+                  }
+                  if (error) {
+                    return <div>Error</div>;
+                  }
+
+                  const housesToDisplay = data.me.houses;
+
+                  return (
+                    <div>
+                      Houses: {housesToDisplay.map(house => `${house.name} `)}
+                    </div>
+                  );
+                }}
+              </Query>
+            </div>
           )}
           <hr />
         </div>

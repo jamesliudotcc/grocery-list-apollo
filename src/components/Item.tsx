@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-interface Props {
+interface ItemProps {
   item: { name: string; qty: number };
 }
 
-class Item extends Component<Props> {
+class Item extends Component<ItemProps> {
   render() {
     return (
       <div>
