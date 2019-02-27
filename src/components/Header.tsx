@@ -1,6 +1,16 @@
+import { gql } from 'apollo-boost';
 import React, { Component } from 'react';
+import { Query } from 'react-apollo';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+
+const GREETER_QUERY = gql`
+  query {
+    me {
+      username
+    }
+  }
+`;
 
 class Header extends Component {
   render() {
@@ -8,6 +18,20 @@ class Header extends Component {
       <div className="flex pa1 justify-between nowrap orange">
         <div className="flex flex-fixed black">
           <div className="fw7 mr1">Grocery List</div>
+          <Query query={GREETER_QUERY}>
+            {({ loading, error, data }) => {
+              if (loading) {
+                return <div>Fetching</div>;
+              }
+              if (error) {
+                return <div>Error</div>;
+              }
+
+              const nameToDisplay = data.me.username;
+
+              return <div>Hello, {nameToDisplay}</div>;
+            }}
+          </Query>
           <Link to="/" className="ml1 no-underline black">
             List
           </Link>

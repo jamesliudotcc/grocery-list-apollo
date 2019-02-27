@@ -33,9 +33,10 @@ const client = new ApolloClient({
   uri: GRAPHQL_API_URL,
   request: async operation => {
     const token = await localStorage.getItem(AUTH_TOKEN);
+    console.log(token);
     operation.setContext({
       headers: {
-        authorization: token ? `Bearer ${token}` : '',
+        authorization: token ? `JWT ${token}` : '',
       },
     });
   },

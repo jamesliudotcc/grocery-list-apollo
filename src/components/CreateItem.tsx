@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 
 const POST_MUTATION = gql`
-  mutation postMutation($name: String!, $qty: Number) {
+  mutation postMutation($name: String!, $qty: Int) {
     post(name: $name, qty: $qty) {
       id
       name
