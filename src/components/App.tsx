@@ -17,13 +17,11 @@ const App = () => (
   <div className="center w85">
     {/* <Header /> */}
     <div className="ph3 pv1 background-gray">
-      <ItemList />
-      <hr />
-      <CreateItem />
-      {/* <Switch>
+      <Header />
+      <Switch>
         <Route exact path="/" component={ItemList} />
         <Route exact path="/create" component={CreateItem} />
-      </Switch> */}
+      </Switch>
     </div>
   </div>
 );

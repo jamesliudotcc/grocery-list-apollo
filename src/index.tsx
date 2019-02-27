@@ -2,6 +2,7 @@ import ApolloClient from 'apollo-boost';
 import * as React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/App';
 
@@ -21,8 +22,10 @@ const client = new ApolloClient({
 });
 
 render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <BrowserRouter>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
