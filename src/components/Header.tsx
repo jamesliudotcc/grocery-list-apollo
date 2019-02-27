@@ -11,9 +11,13 @@ class Header extends Component {
           <Link to="/" className="ml1 no-underline black">
             List
           </Link>
-          <div className="ml1" />
+          |
           <Link to="/create" className="ml1 no-underline black">
             Add Item
+          </Link>
+          |
+          <Link to="/login" className="ml1 no-underline black">
+            Login
           </Link>
           <hr />
         </div>

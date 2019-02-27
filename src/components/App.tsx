@@ -3,9 +3,11 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import { Route, Switch } from 'react-router';
 import { Link } from 'react-router-dom';
-import Header from './Header';
+
 import CreateItem from './CreateItem';
+import Header from './Header';
 import ItemList from './ItemList';
+import Login from './Login';
 
 const LOCAL_HELLO = gql`
   query localHello($subject: String) {
@@ -21,6 +23,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={ItemList} />
         <Route exact path="/create" component={CreateItem} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </div>
   </div>
