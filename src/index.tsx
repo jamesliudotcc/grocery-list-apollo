@@ -10,16 +10,6 @@ import { AUTH_TOKEN } from './constants';
 
 const GRAPHQL_API_URL = 'http://localhost:8000/graphql/';
 
-// const authLink = setContext((_, { headers }) => {
-//   const token = localStorage.getItem(AUTH_TOKEN);
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   };
-// });
-
 const client = new ApolloClient({
   clientState: {
     resolvers: {

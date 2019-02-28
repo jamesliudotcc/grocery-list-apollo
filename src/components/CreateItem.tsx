@@ -9,8 +9,15 @@ const POST_MUTATION = gql`
     $qty: Int!
     $house: Int
     $stores: [Int]
+    $boughtBool: Boolean
   ) {
-    createItem(name: $name, qty: $qty, house: $house, stores: $stores) {
+    createItem(
+      name: $name
+      qty: $qty
+      house: $house
+      stores: $stores
+      boughtBool: $boughtBool
+    ) {
       id
       name
       qty
@@ -23,8 +30,9 @@ class CreateItem extends Component {
     name: '',
     qty: 1,
     stores: [1, 2],
-    bought: null,
-    bought_by: null,
+    boughtBool: false,
+    boughtWhen: null,
+    boughtBy: null,
     house: 1,
   };
 
@@ -34,14 +42,12 @@ class CreateItem extends Component {
     return (
       authToken && (
         <div>
-          <Mutation
-            mutation={POST_MUTATION}
-            variables={{ name, qty, house, stores }}
-          >
+          <Mutation mutation={POST_MUTATION} variables={this.state}>
             {PostMutation => (
               <form
                 onSubmit={e => {
                   e.preventDefault();
+                  console.log(this.state);
                   PostMutation();
                 }}
               >

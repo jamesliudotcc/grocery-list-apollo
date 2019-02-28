@@ -1,8 +1,9 @@
 import { gql } from 'apollo-boost';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-import Item from './Item';
+
 import { AUTH_TOKEN } from '../constants';
+import Item from './Item';
 
 const ITEMS_QUERY = gql`
   query {
@@ -10,6 +11,7 @@ const ITEMS_QUERY = gql`
       id
       name
       qty
+      boughtBool
     }
   }
 `;
@@ -32,12 +34,15 @@ class ItemList extends Component<Props> {
             }
 
             const itemsToRender = data.items;
+            console.log(data.items);
 
             return (
               <div>
-                {itemsToRender.map(item => (
-                  <Item key={item.id} item={item} />
-                ))}
+                {itemsToRender
+                  .filter(item => !item.boughtBool)
+                  .map(item => (
+                    <Item key={item.id} item={item} />
+                  ))}
               </div>
             );
           }}
