@@ -9,15 +9,8 @@ const POST_MUTATION = gql`
     $qty: Int!
     $house: Int
     $stores: [Int]
-    $boughtBool: Boolean
   ) {
-    createItem(
-      name: $name
-      qty: $qty
-      house: $house
-      stores: $stores
-      boughtBool: $boughtBool
-    ) {
+    createItem(name: $name, qty: $qty, house: $house, stores: $stores) {
       id
       name
       qty
@@ -30,9 +23,6 @@ class CreateItem extends Component {
     name: '',
     qty: 1,
     stores: [1, 2],
-    boughtBool: false,
-    boughtWhen: null,
-    boughtBy: null,
     house: 1,
   };
 
