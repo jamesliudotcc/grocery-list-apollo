@@ -34,7 +34,6 @@ class ItemList extends Component<Props> {
             }
 
             const itemsToRender = data.items;
-            console.log(data.items);
 
             return (
               <div>

@@ -6,7 +6,6 @@ type ItemProps = any;
 
 class Item extends Component<ItemProps> {
   render() {
-    console.log(this.props.item);
     return (
       <div>
         <div>
